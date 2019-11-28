@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Who Wants to be a Millionaire?</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/4.1.0/css/fabric.min.css"/>
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app" @keyup.65="isAnswer('a')" @keyup.66="isAnswer('b')" @keyup.67="isAnswer('c')" @keyup.68="isAnswer('d')" >
+      <main v-if="play">
+          <div class="header">
+          <!-- Place to place messages or voting results etc -->
+        </div>
+        <h1 class="question" v-html="question"></h1>
+        <button id="a" class="item-a" @click="isAnswer('a')" v-html="answer1"></button>
+        <button id="b" class="item-b" @click="isAnswer('b')" v-html="answer2"></button>
+        <button id="c" class="item-c" @click="isAnswer('c')" v-html="answer3"></button>
+        <button id="d" class="item-d" @click="isAnswer('d')" v-html="answer4"></button>
+      </main>
+      <main v-else>
+          <button @click="beginGame" class="question">Play</button>
+        </main>
+      <aside>
+        <section>
+          <button id="fifty_fifty">
+            <i class="ms-Icon ms-Icon--Contrast" aria-hidden="true"></i>
+          </button>
+          <button id="ask_audience">
+            <a target="_blank" href="https://cdpn.io/lindaryan/debug/1a906147fb88d84a06192d6f7c45d3ea">
+
+            <i class="ms-Icon ms-Icon--Group" aria-hidden="true"></i>
+          </button>
+          <button id="phone_friend">
+            <i class="ms-Icon ms-Icon--Phone" aria-hidden="true"></i>
+          </button>
+        </section>
+         <div v-for="amount in money" :class="{ 'active' : amount.level == qIndex + 1 }">
+        <ul>
+          <li>{{ amount.level }} - ${{ amount.amount }}</li>
+        </ul>
+      </div>
+      </aside>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/scripts.js"></script>
+</html>
